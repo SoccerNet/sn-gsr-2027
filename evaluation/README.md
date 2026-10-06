@@ -1,19 +1,31 @@
-# Evaluation — awaiting 2027 specification
+# Evaluation — GS-HOTA on a continuous half
 
-No official 2027 scorer is released in this repository yet. The task leads must confirm the protocol before implementation.
+The 2027 long-form task uses the **same GS-HOTA metric and SoccerNet TrackEval implementation** as earlier Game State Reconstruction editions. The difference is the evaluation unit: one continuously annotated match half (45 minutes plus added time), rather than the 200 separate 30-second clips drawn from 11 games. This is a much longer association problem; tracker IDs must remain coherent across the complete half according to the final task rules.
 
-The [prior SoccerNet GSR repository](https://github.com/SoccerNet/sn-gamestate#evaluation) uses the [SoccerNet TrackEval fork](https://github.com/SoccerNet/sn-trackeval) and GS-HOTA, which matches pitch positions and identity attributes. This is the reference implementation to adapt once the long-form sequence and identity-continuity rules are fixed. Previous scores and tracker-state files are **not** 2027 baseline results.
+## Exact evaluator
 
-## Required decisions
+The [SoccerNet TrackEval fork](https://github.com/SoccerNet/sn-trackeval) implements GS-HOTA in its `SoccerNetGS` dataset adapter and HOTA metric. In its output the official GS-HOTA value appears as **`HOTA`**. Pin and verify the fork at commit `9c25232f6f2b56c9f203f1eb55784ff1e97df683` before producing reference scores. [run_gs_hota.py](run_gs_hota.py) is a thin local launcher; it does not reimplement the metric.
 
-- Confirm sequence durations, frame timestamps and pitch coordinate convention.
-- Define identity persistence across camera cuts, substitutions and replays.
-- Specify required player attributes and initialization rules.
-- Choose metric version and aggregation across sequences and matches.
-- Confirm offline versus causal processing and runtime limits.
+The previous input layout is:
 
-## Planned deliverables
+```text
+<GT_ROOT>/<split>/<sequence>/Labels-GameState.json
+<PRED_ROOT>/SoccerNetGS-<split>/<tracker>/<sequence>.json
+```
 
-A versioned local scoring command, environment, format example, malformed-submission checks, baseline predictions and score, and CodaBench integration if selected. Use the same [train/valid/test/challenge layout](../data/README.md) as the other 2027 repositories, with a challenge input manifest but no challenge GT in Git. Earlier-edition scores and formats are background only.
+After installing the fork and preparing data in that layout, run:
 
-See [baseline references](../baselines/README.md) and [draft rules](../docs/rules.md).
+```bash
+python3 evaluation/run_gs_hota.py \
+  --trackeval /path/to/sn-trackeval \
+  --gt-folder /path/to/ground_truth \
+  --predictions-folder /path/to/predictions \
+  --split valid \
+  --tracker my_method
+```
+
+This uses the upstream scorer's default pitch-space Gaussian location similarity and role, team, and jersey-number matching, with `HOTA` as the output metric. The final 2027 sequence name, JSON schema, frame IDs, label flags, and GT/prediction conversion must be validated against the fully annotated half. Do not compare unverified long-form scores with the short-clip benchmark.
+
+## Remaining work for CodaBench
+
+Freeze the 2027 split manifests and one-half annotation format, verify the upstream evaluator processes the full sequence without frame drops or memory issues, add a private reference package and a `scores.json` adapter, then score a known baseline. Challenge ground truth remains outside Git. The [data layout](../data/README.md) tracks the public split status.

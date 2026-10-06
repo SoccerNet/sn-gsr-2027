@@ -2,7 +2,7 @@
 
 📢 **Long Form Game State Reconstruction Challenge!** 🚀
 
-Understanding a match requires following the game over time. This challenge focuses on reconstructing player positions and identities on the pitch across extended football sequences. Participants will tackle the challenge of maintaining a coherent representation of the game as players move, interact and become occluded.
+Understanding a match requires following the game over time. This edition moves from 200 short 30-second clips across 11 games to **one continuously annotated match half**, spanning 45 minutes plus added time. Participants will reconstruct player positions and identities across the full interval, using the same GS-HOTA metric as previous editions.
 
 ⏳ **Status:** In preparation — submissions are not open.  
 📅 **Submission deadline:** April 25, 2027; cutoff time and timezone to be announced.  
@@ -17,7 +17,7 @@ Understanding a match requires following the game over time. This challenge focu
 
 ## Data
 
-The 2027 dataset release has not been announced. The data guide will be updated when the task leads confirm the release.
+The fully annotated half exists, but the 2027 dataset package and split boundaries are not yet released. The planned [SN-GSR-2027 dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) will remain private during preparation.
 
 See [the data guide](docs/data.md) for release status and split details. Dataset availability does not mean that the challenge is open. Private evaluation labels are not included in this repository.
 
@@ -29,7 +29,7 @@ See [baseline instructions](baselines/README.md). Existing research baselines mu
 
 ## Evaluation
 
-The 2027 evaluation code and official protocol are awaiting confirmation from the task leads.
+The previous [SoccerNet GS-HOTA evaluator](https://github.com/SoccerNet/sn-trackeval) remains the metric implementation. This repo now includes a [local launcher](evaluation/run_gs_hota.py) and integration notes; the long-half annotation adapter and CodaBench scoring package still require validation.
 
 See [evaluation instructions](evaluation/README.md) for current code, submission formats and remaining decisions. CodaBench test and challenge links will be added after the servers have been validated.
 
@@ -37,10 +37,10 @@ See [evaluation instructions](evaluation/README.md) for current code, submission
 
 | Item | Current state |
 | --- | --- |
-| Task definition | Long-form protocol pending lead confirmation |
+| Task definition | One annotated 45-minute-plus half; detailed identity rules pending |
 | Data and splits | 2027 private dataset and splits pending |
 | Baseline | Prior code linked; 2027 predictions pending |
-| Evaluation | Sequence metric and adapter pending |
+| Evaluation | GS-HOTA confirmed; prior scorer launcher included; long-form/CodaBench adapter pending |
 | Benchmark | CodaBench server pending |
 | Sponsor | Not confirmed |
 
