@@ -1,12 +1,9 @@
-# Split layout
+# Data
 
-The private [SN-GSR-2027 dataset repository](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) is created but empty. This page will list public manifests once the task leads freeze them; no 2027 sequences are in this Git repository.
+Download the match-half data from [SoccerNet/SN-GSR-2027](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027):
 
-| Split | Status | Ground truth here? |
-| --- | --- | --- |
-| train | TBD | TBD |
-| valid | TBD | TBD |
-| test | TBD | TBD |
-| challenge | Separate hidden final set required | **Never** |
+```bash
+hf download SoccerNet/SN-GSR-2027 --repo-type dataset --local-dir ./SN-GSR-2027
+```
 
-See [data guide](../README.md#data). Ground truth for the challenge set belongs only in the organizer scoring package.
+The task covers one continuously annotated match half, including added time. Challenge annotations are withheld for evaluation. See the [evaluation guide](../evaluation/README.md) for the GS-HOTA input format.

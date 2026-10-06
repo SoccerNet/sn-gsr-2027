@@ -1,7 +1,7 @@
 """CodaBench adapter for SoccerNet's published GameStateReconstruction evaluator.
 
 The upstream package uses and deletes ./temp, so run it from an isolated
-temporary working directory. The full-half 2027 package format is pending.
+temporary working directory.
 """
 from __future__ import annotations
 

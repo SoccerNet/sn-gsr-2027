@@ -1,13 +1,9 @@
-# Baseline
+# Long Form GSR baseline
 
-Existing SoccerNet Game State Reconstruction code, provided as background. Compatibility with long sequences and the 2027 protocol remains to be confirmed. The selected baseline version and runtime requirements will be published here.
+The [SoccerNet Game State Reconstruction TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) is the reference starting point for athlete tracking and identification. It accompanies the [SoccerNet GSR paper](../README.md#citation). The upstream repository provides environment, weights, and data instructions; its previous-edition entry point is:
 
-Repository: [https://github.com/SoccerNet/sn-gamestate](https://github.com/SoccerNet/sn-gamestate).
+```bash
+uv run tracklab -cn soccernet
+```
 
-1. Request access to [SN-GSR-2027](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) after the task leads publish it. It is currently a private, empty placeholder. Then run `hf download SoccerNet/SN-GSR-2027 --repo-type dataset --local-dir ./SN-GSR-2027`.
-2. Clone [SoccerNet/sn-gamestate](https://github.com/SoccerNet/sn-gamestate), follow its environment and weight instructions, and run the previous-edition entry point `uv run tracklab -cn soccernet` from that repository root.
-3. When the full-half data arrives, adapt the input/config to its frame and timestamp schema, retain identities throughout the half, and export the required JSON for the [evaluation adapter](../evaluation/README.md). This adaptation is pending and the previous command does not yet produce a 2027 submission.
-
-That repository also links to prior validation, test, and challenge [tracker-state predictions on Zenodo](https://github.com/SoccerNet/sn-gamestate#downloading-the-baselines-tracker-states). These are useful for understanding the legacy output shape, but the 2027 long-form prediction files remain TBD and are not copied here.
-
-Before the challenge release, record a tested commit or tag, environment, weights, inference command, output conversion, expected scores and compute requirements. External code remains in its upstream repository and under its own license.
+Download the [SN-GSR-2027 dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) with `hf download SoccerNet/SN-GSR-2027 --repo-type dataset --local-dir ./SN-GSR-2027`. Use the full match half as the input sequence, preserving athlete identities throughout it. Export the prediction JSON expected by the [GS-HOTA evaluation guide](../evaluation/README.md). The upstream pipeline was developed for shorter clips; consult its configuration and sequence handling when applying it to a full half.

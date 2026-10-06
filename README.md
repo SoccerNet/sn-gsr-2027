@@ -2,28 +2,26 @@
 
 📢 **Long Form Game State Reconstruction (GSR) Challenge!** 🚀
 
-⏳ **Status:** In preparation — submissions are not open.\
 📅 **Submission deadline:** April 25, 2027, 23:59 Anywhere on Earth (AoE; UTC−12).\
-👥 **Task leads:** Anthony Cioppa and Cedric Gavage\
-🤝 **Sponsor:** To be announced
+👥 **Task leads:** Anthony Cioppa and Cedric Gavage
 
-🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) · 🗂️ [Data on Hugging Face](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) · 💻 [Baseline](baselines/README.md) · 📚 [Rules](RULES.md) · 📊 [Evaluation](evaluation/README.md) · 🏆 [Evaluation server](https://www.codabench.org/) (task URL TBD)
+🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) · 🗂️ [Data on Hugging Face](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) · 💻 [Baseline](baselines/README.md) · 📚 [Rules](RULES.md) · 📊 [Evaluation](evaluation/README.md)
 
 ## Task
 
-Reconstruct athlete positions and identities on the pitch from a **continuously annotated match half**, covering 45 minutes plus added time. Previous SoccerNet-Tracking and GSR benchmarks used 200 separate 30-second clips across 11 games. This edition tests identity continuity over the full half. It retains the prior **GS-HOTA** metric, which combines pitch localization with role, team, jersey number, detection, and association quality.
+Reconstruct athlete positions and identities on the pitch throughout one continuously annotated match half, including added time. Unlike the earlier 30-second clip benchmark, this task measures identity continuity over the full half. Evaluation uses the SoccerNet **GS-HOTA** metric.
 
 ## Data
 
-The [SN-GSR-2027 Hugging Face repository](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) exists as a **private, empty placeholder**. The annotated half exists, but its 2027 package, frame IDs, JSON schema, and train/valid/test/challenge allocation have not been released. The [split inventory](data/README.md) tracks those decisions. Challenge ground truth stays outside Git.
+The [SN-GSR-2027 dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) hosts the match-half material. The [data guide](data/README.md) describes dataset access and the separation of challenge inputs from evaluation labels.
 
 ## Baseline
 
-The [baseline folder](baselines/README.md) links the [SoccerNet Game State Reconstruction/TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate), explains where to get the Hugging Face dataset, and gives the previous baseline run command. Existing 30-second tracker states are background material; a full-half 2027 prediction set is pending.
+The [baseline guide](baselines/README.md) links the SoccerNet Game State Reconstruction [TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) and its run instructions. The prior GSR and Tracking papers are cited below.
 
 ## Evaluation
 
-The [evaluation folder](evaluation/README.md) documents the **SoccerNet Python package's GameStateReconstruction evaluator**, backed by the SoccerNet TrackEval fork. It contains the adapter for scoring ZIP packages. The full-half annotation and prediction format must be checked before that adapter is used for official CodaBench scoring.
+The [evaluation guide](evaluation/README.md) documents the SoccerNet package's GS-HOTA evaluator, its ZIP input format, and the local scoring adapter. GS-HOTA determines the ranking.
 
 ## Citation
 
@@ -51,19 +49,6 @@ Please cite the SoccerNet-Tracking and SoccerNet GSR papers in their CVPR Worksh
 }
 ```
 
-## Updates and support
+## Community
 
-Each task launches independently when ready. Follow the [challenge website](https://www.soccer-net.org/challenges/2027) and [SoccerNet Discord](https://discord.gg/cPbqf2mAwF) for announcements. Use repository issues for reproducible code problems; do not post access tokens or restricted data.
-
-## Release readiness
-
-| Item | Current state |
-| --- | --- |
-| Task definition | One fully annotated match half and GS-HOTA confirmed; detailed continuity rules pending |
-| Data | Private Hugging Face placeholder created; full-half package and splits pending |
-| Baseline | Prior TrackLab pipeline linked; full-half predictions pending |
-| Evaluation | SoccerNet package metric entry point identified; full-half compatibility pending |
-| Benchmark | CodaBench server TBD |
-| Sponsor | TBD |
-
-This section is for preparation and will be removed when this task is ready for release.
+Follow the [SoccerNet challenge website](https://www.soccer-net.org/challenges/2027) and [Discord](https://discord.gg/cPbqf2mAwF) for challenge announcements and discussion.

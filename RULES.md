@@ -1,7 +1,7 @@
-# Long Form GSR Challenge Rules — draft
+# Long Form Game State Reconstruction challenge rules
 
 📅 **Submission deadline:** April 25, 2027, 23:59 Anywhere on Earth (AoE; UTC−12).
 
-Reconstruct the game state over one continuously annotated match half, including added time. The planned ranking metric is the **same GS-HOTA implementation** used in earlier SoccerNet GSR editions. Prediction identities should remain coherent across the whole sequence; exact handling of camera cuts, replays, substitutions, and occlusions will be frozen with the data specification.
+Reconstruct athlete positions and identities over one continuously annotated match half, including added time. Maintain coherent identities over the full sequence. The ranking metric is **GS-HOTA**, using the same SoccerNet Game State Reconstruction metric as earlier editions.
 
-Challenge annotations are organizer-only. Participants must respect dataset access conditions. Allowed external training data, use of prior SoccerNet GSR data, prediction JSON schema, frame/time convention, compute limits, submission limits, tie policy, code verification, and appeals remain to be finalized. See [evaluation](evaluation/README.md) for the prior metric entry point. These rules become official only when the task launches.
+Respect the [dataset access terms](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027). Challenge annotations are withheld for evaluation. The [evaluation guide](evaluation/README.md) documents the SoccerNet metric implementation and its input format.
