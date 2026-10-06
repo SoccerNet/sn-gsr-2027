@@ -13,7 +13,7 @@ Reconstruct athlete positions and identities on the pitch throughout one continu
 
 ## Data
 
-The [SN-GSR-2027 dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) hosts the match-half material. The [data guide](data/README.md) describes dataset access and the separation of challenge inputs from evaluation labels.
+The new match half is the **2027 challenge set** in [SN-GSR-2027](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027). Training, validation, and test data are the unchanged splits from [SN-GSR-2025](https://huggingface.co/datasets/SoccerNet/SN-GSR-2025). The [data guide](data/README.md) lists the corresponding files.
 
 ## Baseline
 
