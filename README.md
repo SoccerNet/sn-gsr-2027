@@ -1,62 +1,69 @@
-# SoccerNet Challenge 2027 — Long Form Game State Reconstruction
+# SoccerNet Challenge 2027 — Long Form Game State Reconstruction (GSR)
 
-📢 **Long Form Game State Reconstruction Challenge!** 🚀
+📢 **Long Form Game State Reconstruction (GSR) Challenge!** 🚀
 
-Understanding a match requires following the game over time. This edition moves from 200 short 30-second clips across 11 games to **one continuously annotated match half**, spanning 45 minutes plus added time. Participants will reconstruct player positions and identities across the full interval, using the same GS-HOTA metric as previous editions.
-
-⏳ **Status:** In preparation — submissions are not open.  
-📅 **Submission deadline:** April 25, 2027; cutoff time and timezone to be announced.  
-👥 **Task lead(s):** Anthony  
+⏳ **Status:** In preparation — submissions are not open.\
+📅 **Submission deadline:** April 25, 2027, 23:59 Anywhere on Earth (AoE; UTC−12).\
+👥 **Task leads:** Anthony Cioppa and Cedric Gavage\
 🤝 **Sponsor:** To be announced
 
-🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) / 🗂️ [Private dataset placeholder](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) / 💻 [Prior baseline repository](https://github.com/SoccerNet/sn-gamestate) / 📚 [Rules](docs/rules.md) / 📊 [Evaluation](evaluation/README.md)
+🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) · 🗂️ [Data on Hugging Face](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) · 💻 [Baseline](baselines/README.md) · 📚 [Rules](RULES.md) · 📊 [Evaluation](evaluation/README.md) · 🏆 [Evaluation server](https://www.codabench.org/) (task URL TBD)
 
 ## Task
 
-[Task specification and open decisions](docs/task.md) describes the current scope. This repository will hold the versioned evaluation code and submission instructions for the 2027 challenge. Baselines may live here or in an external repository linked below.
+Reconstruct athlete positions and identities on the pitch from a **continuously annotated match half**, covering 45 minutes plus added time. Previous SoccerNet-Tracking and GSR benchmarks used 200 separate 30-second clips across 11 games. This edition tests identity continuity over the full half. It retains the prior **GS-HOTA** metric, which combines pitch localization with role, team, jersey number, detection, and association quality.
 
 ## Data
 
-The fully annotated half exists, but the 2027 dataset package and split boundaries are not yet released. The [SN-GSR-2027 dataset repository](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) has been created privately as an empty placeholder.
-
-See [the data guide](docs/data.md) for release status and split details. Dataset availability does not mean that the challenge is open. Private evaluation labels are not included in this repository.
+The [SN-GSR-2027 Hugging Face repository](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) exists as a **private, empty placeholder**. The annotated half exists, but its 2027 package, frame IDs, JSON schema, and train/valid/test/challenge allocation have not been released. The [split inventory](data/README.md) tracks those decisions. Challenge ground truth stays outside Git.
 
 ## Baseline
 
-Existing SoccerNet Game State Reconstruction code, provided as background. Compatibility with long sequences and the 2027 protocol remains to be confirmed. The selected baseline version and runtime requirements will be published here.
-
-See [baseline instructions](baselines/README.md). Existing research baselines must be checked against the final challenge format before their scores are advertised as 2027 reference results.
+The [baseline folder](baselines/README.md) links the [SoccerNet Game State Reconstruction/TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate), explains where to get the Hugging Face dataset, and gives the previous baseline run command. Existing 30-second tracker states are background material; a full-half 2027 prediction set is pending.
 
 ## Evaluation
 
-The previous [SoccerNet GS-HOTA evaluator](https://github.com/SoccerNet/sn-trackeval) remains the metric implementation. This repo now includes a [local launcher](evaluation/run_gs_hota.py) and integration notes; the long-half annotation adapter and CodaBench scoring package still require validation.
+The [evaluation folder](evaluation/README.md) documents the **SoccerNet Python package's GameStateReconstruction evaluator**, backed by the SoccerNet TrackEval fork. It contains the adapter for scoring ZIP packages. The full-half annotation and prediction format must be checked before that adapter is used for official CodaBench scoring.
 
-See [evaluation instructions](evaluation/README.md) for current code, submission formats and remaining decisions. CodaBench test and challenge links will be added after the servers have been validated.
+## Citation
+
+Please cite the SoccerNet-Tracking and SoccerNet GSR papers in their CVPR Workshops versions:
+
+```bibtext
+@InProceedings{Cioppa_2022_CVPR,
+  author = {Cioppa, Anthony and Giancola, Silvio and Deliege, Adrien and Kang, Le and Zhou, Xin and Cheng, Zhiyu and Ghanem, Bernard and Van Droogenbroeck, Marc},
+  title = {SoccerNet-Tracking: Multiple Object Tracking Dataset and Benchmark in Soccer Videos},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+  year = {2022},
+  pages = {3490--3501},
+  doi = {10.1109/CVPRW56347.2022.00393},
+  url = {https://mlanthology.org/cvprw/2022/cioppa2022cvprw-soccernettracking/}
+}
+
+@InProceedings{Somers_2024_CVPR,
+  author = {Somers, Vladimir and Joos, Victor and Cioppa, Anthony and Giancola, Silvio and Ghasemzadeh, Seyed Abolfazl and Magera, Floriane and Standaert, Baptiste and Mansourian, Amir M. and Zhou, Xin and Kasaei, Shohreh and Ghanem, Bernard and Alahi, Alexandre and Van Droogenbroeck, Marc and De Vleeschouwer, Christophe},
+  title = {SoccerNet Game State Reconstruction: End-to-End Athlete Tracking and Identification on a Minimap},
+  booktitle = {Proceedings of the IEEE/CVF Conference on Computer Vision and Pattern Recognition (CVPR) Workshops},
+  month = {June},
+  year = {2024},
+  pages = {3293--3305},
+  url = {https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Somers_SoccerNet_Game_State_Reconstruction_End-to-End_Athlete_Tracking_and_Identification_on_CVPRW_2024_paper.html}
+}
+```
+
+## Updates and support
+
+Each task launches independently when ready. Follow the [challenge website](https://www.soccer-net.org/challenges/2027) and [SoccerNet Discord](https://discord.gg/cPbqf2mAwF) for announcements. Use repository issues for reproducible code problems; do not post access tokens or restricted data.
 
 ## Release readiness
 
 | Item | Current state |
 | --- | --- |
-| Task definition | One annotated 45-minute-plus half; detailed identity rules pending |
-| Data and splits | Private Hugging Face placeholder created; 2027 contents and splits pending |
-| Baseline | Prior code linked; 2027 predictions pending |
-| Evaluation | GS-HOTA confirmed; prior scorer launcher included; long-form/CodaBench adapter pending |
-| Benchmark | CodaBench server pending |
-| Sponsor | Not confirmed |
+| Task definition | One fully annotated match half and GS-HOTA confirmed; detailed continuity rules pending |
+| Data | Private Hugging Face placeholder created; full-half package and splits pending |
+| Baseline | Prior TrackLab pipeline linked; full-half predictions pending |
+| Evaluation | SoccerNet package metric entry point identified; full-half compatibility pending |
+| Benchmark | CodaBench server TBD |
+| Sponsor | TBD |
 
-Each task launches independently after its rules, data, baseline, evaluator and benchmark are verified. See the [task specification](docs/task.md) for remaining technical decisions.
-
-## Getting started
-
-1. Read the [task specification](docs/task.md) and [draft rules](docs/rules.md).
-2. Follow the [data access guide](docs/data.md).
-3. Consult the [baseline instructions](baselines/README.md).
-4. Check the [evaluation status](evaluation/README.md) before generating submissions.
-
-## Updates and support
-
-Each task launches independently once ready. Follow the [challenge website](https://www.soccer-net.org/challenges/2027) and [SoccerNet Discord](https://discord.gg/cPbqf2mAwF). Use repository issues for reproducible code problems; do not post access tokens, restricted data or private labels.
-
-## Citation and licensing
-
-Please cite [SoccerNet-Tracking (CVPR Workshops 2022)](https://mlanthology.org/cvprw/2022/cioppa2022cvprw-soccernettracking/) and [SoccerNet Game State Reconstruction (CVPR Workshops 2024)](https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Somers_SoccerNet_Game_State_Reconstruction_End-to-End_Athlete_Tracking_and_Identification_on_CVPRW_2024_paper.html). Use `\cite{Cioppa_2022_CVPR,Somers_2024_CVPR}` in LaTeX; conference BibTeX is in [CITATION.bib](CITATION.bib). The 2027 long-form challenge citation and code license will be confirmed before release.
+This section is for preparation and will be removed when this task is ready for release.
