@@ -9,7 +9,7 @@ Understanding a match requires following the game over time. This edition moves 
 👥 **Task lead(s):** Anthony  
 🤝 **Sponsor:** To be announced
 
-🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) / 🗂️ [Planned private dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) / 💻 [Prior baseline repository](https://github.com/SoccerNet/sn-gamestate) / 📚 [Rules](docs/rules.md) / 📊 [Evaluation](evaluation/README.md)
+🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) / 🗂️ [Private dataset placeholder](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) / 💻 [Prior baseline repository](https://github.com/SoccerNet/sn-gamestate) / 📚 [Rules](docs/rules.md) / 📊 [Evaluation](evaluation/README.md)
 
 ## Task
 
@@ -17,7 +17,7 @@ Understanding a match requires following the game over time. This edition moves 
 
 ## Data
 
-The fully annotated half exists, but the 2027 dataset package and split boundaries are not yet released. The planned [SN-GSR-2027 dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) will remain private during preparation.
+The fully annotated half exists, but the 2027 dataset package and split boundaries are not yet released. The [SN-GSR-2027 dataset repository](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) has been created privately as an empty placeholder.
 
 See [the data guide](docs/data.md) for release status and split details. Dataset availability does not mean that the challenge is open. Private evaluation labels are not included in this repository.
 
@@ -38,7 +38,7 @@ See [evaluation instructions](evaluation/README.md) for current code, submission
 | Item | Current state |
 | --- | --- |
 | Task definition | One annotated 45-minute-plus half; detailed identity rules pending |
-| Data and splits | 2027 private dataset and splits pending |
+| Data and splits | Private Hugging Face placeholder created; 2027 contents and splits pending |
 | Baseline | Prior code linked; 2027 predictions pending |
 | Evaluation | GS-HOTA confirmed; prior scorer launcher included; long-form/CodaBench adapter pending |
 | Benchmark | CodaBench server pending |
