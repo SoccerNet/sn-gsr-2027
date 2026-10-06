@@ -9,7 +9,7 @@ Understanding a match requires following the game over time. This challenge focu
 👥 **Task lead(s):** Anthony  
 🤝 **Sponsor:** To be announced
 
-🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) / 🗂️ **Data:** Coming soon / 💻 [Baseline repository](https://github.com/SoccerNet/sn-gamestate) / 📚 [Rules](docs/rules.md) / 📊 [Evaluation](evaluation/README.md)
+🏠 [Challenge website](https://www.soccer-net.org/challenges/2027) / 🗂️ [Planned private dataset](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) / 💻 [Prior baseline repository](https://github.com/SoccerNet/sn-gamestate) / 📚 [Rules](docs/rules.md) / 📊 [Evaluation](evaluation/README.md)
 
 ## Task
 
@@ -33,6 +33,19 @@ The 2027 evaluation code and official protocol are awaiting confirmation from th
 
 See [evaluation instructions](evaluation/README.md) for current code, submission formats and remaining decisions. CodaBench test and challenge links will be added after the servers have been validated.
 
+## Release readiness
+
+| Item | Current state |
+| --- | --- |
+| Task definition | Long-form protocol pending lead confirmation |
+| Data and splits | 2027 private dataset and splits pending |
+| Baseline | Prior code linked; 2027 predictions pending |
+| Evaluation | Sequence metric and adapter pending |
+| Benchmark | CodaBench server pending |
+| Sponsor | Not confirmed |
+
+Each task launches independently after its rules, data, baseline, evaluator and benchmark are verified. See the [task specification](docs/task.md) for remaining technical decisions.
+
 ## Getting started
 
 1. Read the [task specification](docs/task.md) and [draft rules](docs/rules.md).
@@ -46,4 +59,4 @@ Each task launches independently once ready. Follow the [challenge website](http
 
 ## Citation and licensing
 
-The 2027 citation and repository code license will be confirmed before release. Dataset access terms and external baseline licenses apply independently; linking them does not relicense their contents.
+Please cite [SoccerNet-Tracking (CVPR Workshops 2022)](https://mlanthology.org/cvprw/2022/cioppa2022cvprw-soccernettracking/) and [SoccerNet Game State Reconstruction (CVPR Workshops 2024)](https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Somers_SoccerNet_Game_State_Reconstruction_End-to-End_Athlete_Tracking_and_Identification_on_CVPRW_2024_paper.html). Use `\cite{Cioppa_2022_CVPR,Somers_2024_CVPR}` in LaTeX; conference BibTeX is in [CITATION.bib](CITATION.bib). The 2027 long-form challenge citation and code license will be confirmed before release.
