@@ -9,7 +9,7 @@
 
 ## Task
 
-Reconstruct athlete positions and identities on the pitch throughout one continuously annotated match half, including added time. Unlike the earlier 30-second clip benchmark, this task measures identity continuity over the full half. Evaluation uses the SoccerNet **GS-HOTA** metric.
+Given the broadcast video of one continuously annotated match half, including added time, reconstruct the game state frame by frame. For each athlete, predict the position in pitch coordinates, a consistent track identity, the role (player, goalkeeper, referee, or other), and, for players and goalkeepers, team affiliation and jersey number when visible. The earlier benchmark used 30-second clips; this edition measures reconstruction and identity continuity across the full half. The ranking metric remains SoccerNet **GS-HOTA**.
 
 ## Data
 
@@ -17,11 +17,11 @@ The new match half is the **2027 challenge set** in [SN-GSR-2027](https://huggin
 
 ## Baseline
 
-The [baseline guide](baselines/README.md) links the SoccerNet Game State Reconstruction [TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) and its run instructions. The prior GSR and Tracking papers are cited below.
+The [baseline guide](baselines/README.md) explains how to install and run the SoccerNet Game State Reconstruction [TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) on the existing validation data, then use its prediction format for the full-half challenge. The prior GSR and Tracking papers are cited below.
 
 ## Evaluation
 
-The [evaluation guide](evaluation/README.md) documents the SoccerNet package's GS-HOTA evaluator, its ZIP input format, and the local scoring adapter. GS-HOTA determines the ranking.
+The [evaluation guide](evaluation/README.md) documents the prediction JSON and ZIP format, the SoccerNet package's GS-HOTA evaluator, and the local scoring adapter. GS-HOTA determines the ranking.
 
 ## Citation
 

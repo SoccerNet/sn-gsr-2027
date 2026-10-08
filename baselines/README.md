@@ -1,9 +1,29 @@
 # Long Form GSR baseline
 
-The [SoccerNet Game State Reconstruction TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) is the reference starting point for athlete tracking and identification. It accompanies the [SoccerNet GSR paper](../README.md#citation). The upstream repository provides environment, weights, and data instructions; its previous-edition entry point is:
+The reference starting point is the [SoccerNet Game State Reconstruction TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate), which accompanies the [GSR paper](../README.md#citation). It combines athlete detection, re-identification and tracking with pitch calibration, role, team, and jersey-number modules. The implementation and pretrained component weights are maintained upstream.
+
+Download and extract the [SN-GSR-2025 development splits](../data/README.md). Then install the upstream pipeline using its documented `uv` setup:
 
 ```bash
-uv run tracklab -cn soccernet
+git clone https://github.com/SoccerNet/sn-gamestate.git
+cd sn-gamestate
+uv venv --python 3.9
+uv pip install -e .
+uv run mim install mmcv==2.0.1
 ```
 
-Use the [SN-GSR-2025 train, validation, and test splits](https://huggingface.co/datasets/SoccerNet/SN-GSR-2025) to develop the method. Download the new [SN-GSR-2027 challenge set](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) with `hf download SoccerNet/SN-GSR-2027 --repo-type dataset --local-dir ./SN-GSR-2027`. Use the full match half as the challenge input sequence, preserving athlete identities throughout it. Export the prediction JSON expected by the [GS-HOTA evaluation guide](../evaluation/README.md). The upstream pipeline was developed for shorter clips; consult its configuration and sequence handling when applying it to a full half.
+Point `data_dir` to the absolute path of the directory containing `SoccerNetGS`. The default run processes one validation sequence and downloads pretrained weights as needed:
+
+```bash
+uv run tracklab -cn soccernet data_dir=/absolute/path/to/data
+```
+
+To reproduce the upstream baseline across the complete validation split, use the configuration's `dataset.nvid=-1` and `dataset.eval_set=valid` controls:
+
+```bash
+uv run tracklab -cn soccernet data_dir=/absolute/path/to/data dataset.eval_set=valid dataset.nvid=-1
+```
+
+The upstream pipeline writes a SoccerNetGS prediction ZIP under its run's `eval/pred/` directory. This is the format accepted by the [evaluation guide](../evaluation/README.md). The [SoccerNet configuration](https://github.com/SoccerNet/sn-gamestate/blob/main/sn_gamestate/configs/soccernet.yaml) describes the dataset and module settings.
+
+Download the [SN-GSR-2027 challenge input](https://huggingface.co/datasets/SoccerNet/SN-GSR-2027) from Hugging Face. Process the full match half as one sequence and retain track identities across it. Export one JSON file with the same sequence name and the prediction fields described in the [evaluation guide](../evaluation/README.md). The longer input may require adjusting the pipeline's video selection, batch sizes, and retained tracker state; the [upstream configuration](https://github.com/SoccerNet/sn-gamestate/blob/main/sn_gamestate/configs/soccernet.yaml) documents these controls.
