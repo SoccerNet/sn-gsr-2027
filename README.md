@@ -17,7 +17,7 @@ The new match half is the **2027 challenge set** in [SN-GSR-2027](https://huggin
 
 ## Baseline
 
-The [baseline guide](baselines/README.md) explains how to install and run the SoccerNet Game State Reconstruction [TrackLab pipeline](https://github.com/SoccerNet/sn-gamestate) on the existing validation data, then use its prediction format for the full-half challenge. The prior GSR and Tracking papers are cited below.
+The [baseline guide](baselines/README.md) explains how to install and run a modular, resumable pipeline designed for full halves on the existing validation data, then on the full-half challenge. It is derived from Broadcast2Pitch, the winning solution of the 2025 challenge (KIST). The prior GSR and Tracking papers and the 2025 challenge report are cited below.
 
 ## Evaluation
 
@@ -46,6 +46,17 @@ Please cite the SoccerNet-Tracking and SoccerNet GSR papers in their CVPR Worksh
   year = {2024},
   pages = {3293--3305},
   url = {https://openaccess.thecvf.com/content/CVPR2024W/CVsports/html/Somers_SoccerNet_Game_State_Reconstruction_End-to-End_Athlete_Tracking_and_Identification_on_CVPRW_2024_paper.html}
+}
+```
+
+The baseline is derived from Broadcast2Pitch, described in *Broadcast2Pitch: Game State Reconstruction from Unconstrained Soccer Videos* (WACV 2026) and in the 2025 challenge report:
+
+```bibtex
+@article{Giancola2025SoccerNet2025,
+  title   = {{SoccerNet} 2025 Challenges Results},
+  author  = {Giancola, Silvio and Cioppa, Anthony and others},
+  journal = {arXiv preprint arXiv:2508.19182},
+  year    = {2025}
 }
 ```
 

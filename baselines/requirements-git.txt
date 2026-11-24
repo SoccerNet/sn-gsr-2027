@@ -1,0 +1,6 @@
+# Install after requirements.txt, which already provides their dependencies
+# (--no-deps keeps torchreid from replacing opencv-python-headless by the GUI build):
+#   pip install -r requirements-git.txt --no-build-isolation --no-deps
+# Git dependencies are pinned to a commit for reproducibility.
+clip @ git+https://github.com/openai/CLIP.git@d05afc436d78f1c48dc0dbf8e5980a9d471f35f6
+torchreid @ git+https://github.com/KaiyangZhou/deep-person-reid.git@f8cd150fdf77e8d9e1ed143b7f308c2c609ded50

@@ -6,10 +6,16 @@ __pycache__/
 .DS_Store
 private/
 outputs/
+*.egg-info/
+baselines/checkpoints/
 *.zip
 *.pt
 *.pth
+*.pth.tar*
 *.ckpt
+*.mp4
+*.jpg
+*.jpeg
 
 # Keep hidden challenge references out of Git.
 **/challenge_GT.json
