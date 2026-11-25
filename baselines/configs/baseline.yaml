@@ -1,0 +1,66 @@
+# SN-GSR-2027 baseline configuration.
+# Relative paths are resolved from the baselines/ directory.
+# Any entry can be overridden from the command line, without editing this file:
+#   python run_baseline.py --set DATA_DIR=/data/SN-GSR-2027 SPLIT=challenge QWEN.BATCH_SIZE=2
+
+DEVICE      : auto                  # auto | cuda | cuda:1 | cpu
+DATA_DIR    : ../data/SN-GSR-2027   # contains <SPLIT>/<sequence>/img1/000001.jpg ...
+SPLIT       : challenge             # challenge, or a development split (train | valid | test)
+OUTPUT_DIR  : outputs               # results go to OUTPUT_DIR/<SPLIT>/<sequence>/
+
+# Camera calibration (keypoints + lines -> homography)
+SFR:
+  MODEL_PATH    : checkpoints/SoccernetGSR_EfficientNet_Best.pth
+  KPTS_PATH     : assets/pitch/soccernet_template_97.npy
+  TEMPLATE_PATH : assets/pitch/Radar.png
+  NUM_KPTS      : 97
+  NUM_LINES     : 21
+  IMAGE_SIZE    : [384, 384]
+  FRAME_STRIDE  : 1          # >1 estimates the homography every N frames and reuses it in between (faster)
+
+# Detection (YOLOX) + tracking (Deep-EIoU)
+TRACKER:
+  MODEL_PATH          : checkpoints/yolox_soccernet.pth.tar
+  EXP_FILE            : exp/yolox_x_soccernet.py
+  FP16                : False
+  FPS                 : 25
+  BATCH_SIZE          : 4
+  CONF                : 0.1
+  NMS_THRESH          : 0.7
+  TSIZE               : (800,1440)
+  TRACK_HIGH_THRESH   : 0.6
+  TRACK_LOW_THRESH    : 0.05
+  NEW_TRACK_THRESH    : 0.7
+  TRACK_BUFFER        : 60
+  MATCH_THRESH        : 0.8
+  ASPECT_RATIO_THRESH : 1.6
+  MIN_BOX_AREA        : 10
+  PROXIMITY_THRESH    : 0.5
+  APPEARANCE_THRESH   : 0.25
+  WITH_REID           : True
+
+# Re-ID features used by the tracker
+REID:
+  MODEL_PATH : checkpoints/sports_model.pth.tar-60
+  IMAGE_SIZE : [256, 128]
+
+# Role / jersey number / jersey color, frame by frame
+CLIP:
+  MODEL_PATH : checkpoints/CLIP_Jersey.pth
+
+# Track-level jersey number / color verification
+QWEN:
+  ENABLED       : True
+  MODEL_ID      : Qwen/Qwen3-VL-8B-Instruct-FP8   # downloaded from the Hub; on GPUs without FP8
+                                                  # (compute capability < 8.9) the BF16 version is used
+  MAX_ATTEMPTS  : 96     # max crops read per track
+  MIN_AGREEMENT : 3      # identical (number, color) answers needed to validate a track
+  BATCH_SIZE    : 4      # crops per Qwen forward pass
+
+# ID-Aware Tracklet Refinement
+IDATR:
+  MODEL_PATH       : checkpoints/sports_model.pth.tar-60
+  GAP_LEN          : 25
+  USE_JN           : True
+  SPATIAL_FACTOR   : 1
+  MERGE_DIST_THRES : 0.4
